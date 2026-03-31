@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Washbit – Laundry Service in Greater Noida</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+  :root {
+    --blue: #1A6BFF;
+    --blue-dark: #1251CC;
+    --blue-light: #EBF1FF;
+    --blue-mid: #3B82F6;
+    --white: #FFFFFF;
+    --grey-light: #F5F7FB;
+    --grey-mid: #E8ECF4;
+    --grey-text: #6B7A99;
+    --dark: #0D1B3E;
+    --dark-mid: #1E2D54;
+    --accent: #00C6A2;
+    --accent-light: #E0FBF4;
+    --warn: #FF6B35;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--grey-mid);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 24px rgba(26,107,255,0.1); }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--blue);
+    letter-spacing: -0.5px;
+    display: flex; align-items: center; gap: 8px;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--dark); }
+  .nav-logo .dot { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--dark-mid);
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta {
+    background: var(--blue);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    transition: background .2s, transform .2s !important;
+  }
+  .nav-cta:hover { background: var(--blue-dark) !important; transform: translateY(-1px); }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 4px;
+  }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; transition: all .3s; }
+  .mobile-menu {
+    display: none; position: fixed; top: 68px; left: 0; right: 0;
+    background: white; padding: 20px 5%; flex-direction: column; gap: 16px;
+    border-bottom: 1px solid var(--grey-mid); z-index: 999;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { text-decoration: none; font-weight: 500; color: var(--dark-mid); padding: 8px 0; border-bottom: 1px solid var(--grey-mid); font-size: .95rem; }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-book { background: var(--blue); color: white !important; padding: 14px; border-radius: 12px; text-align: center; border: none !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0D1B3E 0%, #1A3A7A 50%, #1A6BFF 100%);
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-blob {
+    position: absolute; right: -100px; top: 50%; transform: translateY(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(26,107,255,0.35) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-blob2 {
+    position: absolute; left: -80px; bottom: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,198,162,0.2) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1200px; margin: 0 auto; gap: 40px; }
+  .hero-text { flex: 1; max-width: 580px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: #A8C8FF; font-size: .8rem; font-weight: 600;
+    padding: 6px 16px; border-radius: 50px; margin-bottom: 24px;
+    letter-spacing: .5px; text-transform: uppercase;
+    animation: fadeUp .6s ease both;
+  }
+  .hero-badge i { color: var(--accent); }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 800;
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    animation: fadeUp .6s ease .1s both;
+  }
+  .hero h1 .highlight {
+    background: linear-gradient(90deg, #00C6A2, #1A6BFF);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero-sub {
+    font-size: 1.05rem; color: rgba(255,255,255,0.75);
+    margin-bottom: 36px; line-height: 1.7;
+    animation: fadeUp .6s ease .2s both;
+  }
+  .hero-pills {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px;
+    animation: fadeUp .6s ease .25s both;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+    color: white; font-size: .82rem; padding: 6px 14px; border-radius: 50px;
+  }
+  .pill i { color: var(--accent); font-size: .75rem; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp .6s ease .3s both; }
+  .btn-primary {
+    background: var(--blue);
+    color: white; font-weight: 700; font-size: .95rem;
+    padding: 15px 32px; border-radius: 50px; border: none; cursor: pointer;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: all .25s; box-shadow: 0 8px 32px rgba(26,107,255,0.5);
+  }
+  .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(26,107,255,0.6); }
+  .btn-wa {
+    background: #25D366; color: white; font-weight: 700; font-size: .95rem;
+    padding: 15px 28px; border-radius: 50px; border: none; cursor: pointer;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: all .25s; box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+  }
+  .btn-wa:hover { background: #1ebe5b; transform: translateY(-2px); }
+  .hero-visual {
+    flex: 0 0 340px; display: flex; flex-direction: column; gap: 16px;
+    animation: fadeUp .6s ease .4s both;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px; padding: 20px 24px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .stat-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .stat-icon.blue { background: rgba(26,107,255,0.3); color: #7FB3FF; }
+  .stat-icon.green { background: rgba(0,198,162,0.3); color: var(--accent); }
+  .stat-icon.orange { background: rgba(255,107,53,0.3); color: #FFAB8B; }
+  .stat-label { font-size: .82rem; color: rgba(255,255,255,0.55); margin-bottom: 2px; }
+  .stat-val { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; color: white; }
+
+  /* ─── SECTION WRAPPER ─── */
+  section { padding: 80px 5%; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--blue-light); color: var(--blue);
+    font-size: .78rem; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 50px; margin-bottom: 14px;
+  }
+  .section-title { font-size: clamp(1.7rem, 3.5vw, 2.5rem); font-weight: 800; color: var(--dark); margin-bottom: 12px; line-height: 1.2; }
+  .section-sub { font-size: 1rem; color: var(--grey-text); max-width: 520px; line-height: 1.7; }
+  .text-center { text-align: center; }
+  .text-center .section-sub { margin: 0 auto; }
+
+  /* ─── SERVICES ─── */
+  .services-bg { background: var(--grey-light); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 48px; }
+  .service-card {
+    background: white; border-radius: 24px; padding: 36px 32px;
+    border: 1px solid var(--grey-mid); position: relative; overflow: hidden;
+    transition: all .3s; cursor: default;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--blue), var(--accent));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .3s;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(26,107,255,0.12); border-color: transparent; }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 64px; height: 64px; border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; margin-bottom: 24px;
+  }
+  .ic-blue { background: var(--blue-light); color: var(--blue); }
+  .ic-green { background: var(--accent-light); color: var(--accent); }
+  .ic-orange { background: #FFF0EB; color: var(--warn); }
+  .service-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; }
+  .service-card p { font-size: .9rem; color: var(--grey-text); line-height: 1.7; }
+  .service-features { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+  .service-feat {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .85rem; color: var(--dark-mid); font-weight: 500;
+  }
+  .service-feat i { color: var(--accent); font-size: .75rem; }
+
+  /* ─── PRICING ─── */
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 48px; }
+  .price-card {
+    background: white; border-radius: 20px; padding: 28px;
+    border: 2px solid var(--grey-mid); text-align: center;
+    transition: all .3s; position: relative; overflow: hidden;
+  }
+  .price-card.featured {
+    border-color: var(--blue);
+    background: linear-gradient(160deg, #EBF1FF 0%, white 60%);
+  }
+  .price-card.featured .feat-badge {
+    position: absolute; top: 16px; right: 16px;
+    background: var(--blue); color: white; font-size: .72rem; font-weight: 700;
+    padding: 4px 10px; border-radius: 50px; letter-spacing: .3px;
+  }
+  .price-card:hover:not(.featured) { border-color: var(--blue); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,107,255,0.1); }
+  .price-card:hover.featured { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,107,255,0.2); }
+  .price-icon { font-size: 2rem; margin-bottom: 14px; }
+  .price-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; color: var(--dark-mid); }
+  .price-amount { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; color: var(--blue); line-height: 1; }
+  .price-unit { font-size: .8rem; color: var(--grey-text); margin-top: 4px; }
+  .price-desc { font-size: .85rem; color: var(--grey-text); margin-top: 12px; line-height: 1.6; }
+  .price-note { margin-top: 32px; text-align: center; font-size: .85rem; color: var(--grey-text); }
+  .price-note a { color: var(--blue); font-weight: 600; text-decoration: none; }
+
+  /* ─── HOW IT WORKS ─── */
+  .how-bg { background: linear-gradient(135deg, var(--dark) 0%, var(--dark-mid) 100%); }
+  .how-bg .section-title { color: white; }
+  .how-bg .section-sub { color: rgba(255,255,255,0.6); }
+  .how-bg .section-tag { background: rgba(255,255,255,0.1); color: #7FB3FF; }
+  .steps { display: flex; flex-wrap: wrap; gap: 0; margin-top: 56px; position: relative; justify-content: center; }
+  .steps::before {
+    content: ''; position: absolute; top: 36px; left: 12%; right: 12%; height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--accent));
+    opacity: .4;
+  }
+  .step { flex: 1; min-width: 180px; max-width: 240px; text-align: center; padding: 0 16px; position: relative; z-index: 1; }
+  .step-num {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: white;
+    margin: 0 auto 20px; position: relative;
+    box-shadow: 0 8px 24px rgba(26,107,255,0.5);
+    transition: transform .3s;
+  }
+  .step:hover .step-num { transform: scale(1.1); }
+  .step-icon {
+    position: absolute; bottom: -8px; right: -8px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); display: flex; align-items: center; justify-content: center;
+    font-size: .65rem; color: white;
+  }
+  .step h4 { color: white; font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .step p { color: rgba(255,255,255,0.55); font-size: .85rem; line-height: 1.6; }
+
+  /* ─── WHY US ─── */
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 48px; }
+  .why-card {
+    background: white; border-radius: 20px; padding: 28px 24px;
+    border: 1px solid var(--grey-mid); display: flex; align-items: flex-start; gap: 18px;
+    transition: all .3s;
+  }
+  .why-card:hover { box-shadow: 0 12px 40px rgba(26,107,255,0.1); transform: translateY(-3px); border-color: var(--blue-mid); }
+  .why-icon {
+    width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  }
+  .why-card h4 { font-size: .95rem; font-weight: 700; margin-bottom: 6px; }
+  .why-card p { font-size: .85rem; color: var(--grey-text); line-height: 1.6; }
+
+  /* ─── TESTIMONIALS ─── */
+  .testi-bg { background: var(--grey-light); }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 48px; }
+  .testi-card {
+    background: white; border-radius: 24px; padding: 32px 28px;
+    border: 1px solid var(--grey-mid); position: relative; overflow: hidden;
+    transition: all .3s;
+  }
+  .testi-card::before {
+    content: '"';
+    position: absolute; top: -10px; right: 20px;
+    font-size: 8rem; font-family: 'Syne', sans-serif; font-weight: 800;
+    color: var(--blue-light); line-height: 1; z-index: 0;
+    pointer-events: none;
+  }
+  .testi-card:hover { box-shadow: 0 16px 48px rgba(26,107,255,0.1); transform: translateY(-4px); }
+  .stars { color: #F59E0B; font-size: .85rem; margin-bottom: 14px; }
+  .testi-text { font-size: .92rem; color: var(--dark-mid); line-height: 1.7; position: relative; z-index: 1; }
+  .testi-author { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+  .author-av {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: .9rem; color: white;
+  }
+  .av1 { background: linear-gradient(135deg, #1A6BFF, #00C6A2); }
+  .av2 { background: linear-gradient(135deg, #FF6B35, #FFD60A); }
+  .av3 { background: linear-gradient(135deg, #8B5CF6, #EC4899); }
+  .author-name { font-weight: 700; font-size: .9rem; }
+  .author-loc { font-size: .78rem; color: var(--grey-text); }
+
+  /* ─── CTA BANNER ─── */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+    padding: 80px 5%;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-banner::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='40' cy='40' r='30'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .cta-banner .inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .cta-banner h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: white; font-weight: 800; margin-bottom: 14px; }
+  .cta-banner p { color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 36px; line-height: 1.7; }
+  .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-white {
+    background: white; color: var(--blue); font-weight: 700; font-size: .95rem;
+    padding: 15px 32px; border-radius: 50px; border: none; cursor: pointer;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: all .25s; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+
+  /* ─── BOOKING FORM ─── */
+  #booking {
+    background: white;
+    padding: 80px 5%;
+  }
+  .booking-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .booking-info h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin-bottom: 16px; }
+  .booking-info p { color: var(--grey-text); line-height: 1.7; margin-bottom: 32px; }
+  .contact-items { display: flex; flex-direction: column; gap: 16px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--grey-light); padding: 14px 18px; border-radius: 14px;
+  }
+  .contact-item i { width: 36px; height: 36px; border-radius: 10px; background: var(--blue-light); color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: .9rem; flex-shrink: 0; }
+  .contact-item span { font-size: .9rem; color: var(--dark-mid); font-weight: 500; }
+  .booking-form { background: var(--grey-light); border-radius: 28px; padding: 40px 36px; }
+  .booking-form h3 { font-size: 1.3rem; margin-bottom: 8px; }
+  .booking-form .sub { font-size: .85rem; color: var(--grey-text); margin-bottom: 28px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: .82rem; font-weight: 600; color: var(--dark-mid); margin-bottom: 6px; letter-spacing: .2px; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 13px 16px;
+    background: white; border: 1.5px solid var(--grey-mid);
+    border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: .9rem; color: var(--dark);
+    outline: none; transition: border-color .2s, box-shadow .2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(26,107,255,0.12);
+  }
+  .form-group textarea { height: 90px; resize: none; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .submit-btn {
+    width: 100%; padding: 15px;
+    background: var(--blue); color: white;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+    border: none; border-radius: 14px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: all .25s; box-shadow: 0 6px 24px rgba(26,107,255,0.35);
+    margin-top: 8px;
+  }
+  .submit-btn:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(26,107,255,0.45); }
+  .form-success {
+    display: none; text-align: center; padding: 24px;
+    background: var(--accent-light); border-radius: 14px; margin-top: 16px;
+  }
+  .form-success i { font-size: 2rem; color: var(--accent); margin-bottom: 10px; display: block; }
+  .form-success h4 { font-size: 1.1rem; margin-bottom: 6px; }
+  .form-success p { font-size: .85rem; color: var(--grey-text); }
+
+  /* ─── CONTACT STRIP ─── */
+  .contact-strip {
+    background: var(--grey-light);
+    padding: 40px 5%;
+    border-top: 1px solid var(--grey-mid);
+  }
+  .contact-strip-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .contact-strip-text h4 { font-size: 1rem; font-weight: 700; }
+  .contact-strip-text p { font-size: .85rem; color: var(--grey-text); }
+  .contact-strip-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    padding: 60px 5% 30px;
+    color: rgba(255,255,255,0.65);
+  }
+  .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 48px; }
+  .footer-brand .nav-logo { font-size: 1.4rem; margin-bottom: 14px; display: inline-flex; }
+  .footer-brand p { font-size: .85rem; line-height: 1.7; max-width: 280px; }
+  .footer-col h5 { color: white; font-size: .9rem; font-weight: 700; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { text-decoration: none; color: rgba(255,255,255,0.55); font-size: .85rem; transition: color .2s; }
+  .footer-col ul a:hover { color: #7FB3FF; }
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    font-size: .8rem;
+  }
+  .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+  .footer-badge { color: rgba(255,255,255,0.35); }
+  .footer-badge span { color: #7FB3FF; font-weight: 600; }
+
+  /* ─── FLOATING BUTTONS ─── */
+  .floating-wrap {
+    position: fixed; bottom: 28px; right: 24px; z-index: 900;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+  }
+  .fab {
+    width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; color: white; transition: all .25s;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    text-decoration: none;
+  }
+  .fab-wa { background: #25D366; }
+  .fab-wa:hover { background: #1ebe5b; transform: scale(1.1); }
+  .fab-book {
+    background: var(--blue); font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: .75rem; width: auto; padding: 0 20px; height: 48px; border-radius: 50px; white-space: nowrap;
+    box-shadow: 0 6px 20px rgba(26,107,255,0.4);
+  }
+  .fab-book:hover { background: var(--blue-dark); transform: translateY(-2px); }
+  .fab-tooltip {
+    position: absolute; right: 68px; top: 50%; transform: translateY(-50%);
+    background: rgba(0,0,0,0.75); color: white; font-size: .75rem;
+    padding: 5px 10px; border-radius: 6px; white-space: nowrap;
+    pointer-events: none; opacity: 0; transition: opacity .2s;
+  }
+  .fab:hover .fab-tooltip { opacity: 1; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease; }
+  .animate.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-inner { flex-direction: column; }
+    .hero-visual { flex: unset; width: 100%; max-width: 400px; margin: 0 auto; }
+    .booking-inner { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .steps { gap: 32px; }
+    .steps::before { display: none; }
+    .step { min-width: 140px; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    section { padding: 60px 5%; }
+    .booking-form { padding: 28px 20px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-btns .btn-wa { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-strip-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">Wash<span>bit</span><span class="dot">.</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#booking">Book Now</a></li>
+    <li><a href="#booking" class="nav-cta">Book Pickup</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services">Services</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#how">How It Works</a>
+  <a href="#testimonials">Reviews</a>
+  <a href="#booking" class="mobile-book">📦 Book Pickup Now</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge"><i class="fas fa-location-dot"></i> Greater Noida's #1 Laundry Service</div>
+      <h1>Affordable <span class="highlight">Laundry Service</span> in Greater Noida</h1>
+      <p class="hero-sub">Free Pickup &amp; Delivery straight to your door. Fast, reliable, and handled with care — so you never worry about laundry again.</p>
+      <div class="hero-pills">
+        <span class="pill"><i class="fas fa-check-circle"></i> Free Pickup</span>
+        <span class="pill"><i class="fas fa-check-circle"></i> 24-hr Turnaround</span>
+        <span class="pill"><i class="fas fa-check-circle"></i> Starting ₹15</span>
+        <span class="pill"><i class="fas fa-check-circle"></i> Home Delivery</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#booking" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Pickup Now</a>
+        <a href="https://wa.me/918051468002" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="stat-card">
+        <div class="stat-icon blue"><i class="fas fa-shirt"></i></div>
+        <div>
+          <div class="stat-label">Iron per shirt</div>
+          <div class="stat-val">₹15 only</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green"><i class="fas fa-truck"></i></div>
+        <div>
+          <div class="stat-label">Pickup &amp; Delivery</div>
+          <div class="stat-val">100% Free</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
+        <div>
+          <div class="stat-label">Turnaround Time</div>
+          <div class="stat-val">24–48 Hours</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-bg" id="services">
+  <div class="section-inner">
+    <div class="text-center animate">
+      <div class="section-tag"><i class="fas fa-sparkles"></i> Our Services</div>
+      <h2 class="section-title">Everything Your Clothes Need</h2>
+      <p class="section-sub">Professional laundry care tailored for students, professionals, and families in Greater Noida.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card animate">
+        <div class="service-icon ic-blue"><i class="fas fa-washing-machine"></i></div>
+        <h3>Washing</h3>
+        <p>Machine-washed with premium detergents, carefully sorted by fabric type and colour to keep your clothes fresh and lasting longer.</p>
+        <div class="service-features">
+          <div class="service-feat"><i class="fas fa-check"></i> Fabric-safe detergents</div>
+          <div class="service-feat"><i class="fas fa-check"></i> Colour-sorted washing</div>
+          <div class="service-feat"><i class="fas fa-check"></i> Odour-free finish</div>
+        </div>
+      </div>
+      <div class="service-card animate">
+        <div class="service-icon ic-green"><i class="fas fa-temperature-high"></i></div>
+        <h3>Ironing</h3>
+        <p>Crisp, sharp, and wrinkle-free every time. Our professional ironing team ensures your clothes look office-ready and presentable.</p>
+        <div class="service-features">
+          <div class="service-feat"><i class="fas fa-check"></i> Steam ironing</div>
+          <div class="service-feat"><i class="fas fa-check"></i> Collar &amp; cuff care</div>
+          <div class="service-feat"><i class="fas fa-check"></i> Neatly folded &amp; packed</div>
+        </div>
+      </div>
+      <div class="service-card animate">
+        <div class="service-icon ic-orange"><i class="fas fa-vest"></i></div>
+        <h3>Dry Cleaning</h3>
+        <p>Premium solvent-based cleaning for delicate fabrics like suits, sarees, woollens, and formal wear that need expert handling.</p>
+        <div class="service-features">
+          <div class="service-feat"><i class="fas fa-check"></i> Safe for delicate fabrics</div>
+          <div class="service-feat"><i class="fas fa-check"></i> Stain pre-treatment</div>
+          <div class="service-feat"><i class="fas fa-check"></i> Suitable for suits &amp; sarees</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="text-center animate">
+      <div class="section-tag"><i class="fas fa-tag"></i> Pricing</div>
+      <h2 class="section-title">Simple, Transparent Pricing</h2>
+      <p class="section-sub">No hidden charges. No surprises. Just honest pricing that fits every budget.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card animate">
+        <div class="price-icon">👕</div>
+        <h3>Shirt / Top Iron</h3>
+        <div class="price-amount">₹15</div>
+        <div class="price-unit">per piece</div>
+        <div class="price-desc">Steam pressed and neatly folded. Looks crisp every single time.</div>
+      </div>
+      <div class="price-card featured animate">
+        <div class="feat-badge">Most Popular</div>
+        <div class="price-icon">🧺</div>
+        <h3>Wash + Iron Combo</h3>
+        <div class="price-amount">₹30</div>
+        <div class="price-unit">per piece</div>
+        <div class="price-desc">Full wash + ironing. Best value for daily wear — shirts, kurtas, trousers and more.</div>
+      </div>
+      <div class="price-card animate">
+        <div class="price-icon">⚖️</div>
+        <h3>Per Kg Laundry</h3>
+        <div class="price-amount">₹70</div>
+        <div class="price-unit">per kilogram</div>
+        <div class="price-desc">Ideal for bulk laundry — towels, bedsheets, casuals, and everyday clothes.</div>
+      </div>
+      <div class="price-card animate">
+        <div class="price-icon">🧥</div>
+        <h3>Dry Cleaning</h3>
+        <div class="price-amount">₹149</div>
+        <div class="price-unit">per piece onwards</div>
+        <div class="price-desc">For suits, sarees, jackets, and delicate items. Priced by garment type.</div>
+      </div>
+    </div>
+    <p class="price-note animate">Need a custom quote for bulk orders? <a href="#booking">Contact us →</a></p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-bg" id="how">
+  <div class="section-inner">
+    <div class="text-center animate">
+      <div class="section-tag"><i class="fas fa-list-ol"></i> How It Works</div>
+      <h2 class="section-title">Laundry Done in 4 Easy Steps</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.6)">No queues. No hassle. Book from your phone and we handle the rest.</p>
+    </div>
+    <div class="steps">
+      <div class="step animate">
+        <div class="step-num">1<span class="step-icon"><i class="fas fa-mobile-alt"></i></span></div>
+        <h4>Book Online</h4>
+        <p>Fill our quick form or WhatsApp us your name, address, and service needed.</p>
+      </div>
+      <div class="step animate">
+        <div class="step-num">2<span class="step-icon"><i class="fas fa-truck"></i></span></div>
+        <h4>We Pick Up</h4>
+        <p>Our team arrives at your door at your preferred time — completely free.</p>
+      </div>
+      <div class="step animate">
+        <div class="step-num">3<span class="step-icon"><i class="fas fa-shirt"></i></span></div>
+        <h4>Wash &amp; Iron</h4>
+        <p>Your clothes are washed, dried, and ironed with professional care and quality products.</p>
+      </div>
+      <div class="step animate">
+        <div class="step-num">4<span class="step-icon"><i class="fas fa-box-open"></i></span></div>
+        <h4>Delivered Back</h4>
+        <p>Fresh, neatly packed clothes delivered right back to your door within 24–48 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section>
+  <div class="section-inner">
+    <div class="text-center animate">
+      <div class="section-tag"><i class="fas fa-shield-halved"></i> Why Washbit</div>
+      <h2 class="section-title">Built for Greater Noida's Life</h2>
+      <p class="section-sub">Whether you're a student in a hostel, a professional rushing to work, or a family managing a packed schedule — Washbit has you covered.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card animate">
+        <div class="why-icon ic-blue"><i class="fas fa-truck"></i></div>
+        <div>
+          <h4>Free Pickup &amp; Delivery</h4>
+          <p>Zero extra charges. We come to you and bring your clothes back — always free, always on time.</p>
+        </div>
+      </div>
+      <div class="why-card animate">
+        <div class="why-icon ic-green"><i class="fas fa-indian-rupee-sign"></i></div>
+        <div>
+          <h4>Affordable Pricing</h4>
+          <p>Rates that work for students and families alike. No surprise bills — just honest pricing.</p>
+        </div>
+      </div>
+      <div class="why-card animate">
+        <div class="why-icon ic-orange"><i class="fas fa-bolt"></i></div>
+        <div>
+          <h4>Fast Turnaround</h4>
+          <p>24 to 48 hour turnaround so you're never out of fresh clothes when you need them.</p>
+        </div>
+      </div>
+      <div class="why-card animate">
+        <div class="why-icon" style="background:#F3F0FF;color:#8B5CF6;"><i class="fas fa-star"></i></div>
+        <div>
+          <h4>Quality Care</h4>
+          <p>Trained team, premium detergents, and careful fabric handling — your clothes are in safe hands.</p>
+        </div>
+      </div>
+      <div class="why-card animate">
+        <div class="why-icon" style="background:#FFF3E0;color:#FB923C;"><i class="fab fa-whatsapp"></i></div>
+        <div>
+          <h4>WhatsApp Support</h4>
+          <p>Book, track, and get support instantly on WhatsApp — no app downloads needed.</p>
+        </div>
+      </div>
+      <div class="why-card animate">
+        <div class="why-icon" style="background:#E0FBF4;color:#00C6A2;"><i class="fas fa-leaf"></i></div>
+        <div>
+          <h4>Eco-Friendly Wash</h4>
+          <p>We use biodegradable detergents and optimised water usage to keep laundry green.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-bg" id="testimonials">
+  <div class="section-inner">
+    <div class="text-center animate">
+      <div class="section-tag"><i class="fas fa-heart"></i> Reviews</div>
+      <h2 class="section-title">Loved by Locals in Greater Noida</h2>
+      <p class="section-sub">Real words from real customers who trust Washbit every week.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card animate">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Been using Washbit for 3 months now and I'm honestly impressed. As a working professional, I have zero time for laundry. They pick up on Sunday and deliver Monday morning — perfectly ironed. Exactly what I needed.</p>
+        <div class="testi-author">
+          <div class="author-av av1">RK</div>
+          <div>
+            <div class="author-name">Rohit Kumar</div>
+            <div class="author-loc">IT Professional, Alpha 2, Greater Noida</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card animate">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Super affordable and the quality is great. I was spending way too much time at the laundromat. Now I just WhatsApp them and it's sorted. Shirts come back crisp and smelling fresh. Highly recommend to any student!</p>
+        <div class="testi-author">
+          <div class="author-av av2">PS</div>
+          <div>
+            <div class="author-name">Priya Sharma</div>
+            <div class="author-loc">Student, Sharda University, Greater Noida</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card animate">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">I use their dry cleaning for my husband's suits and my sarees. They're careful with delicate fabrics, the turnaround is fast, and delivery is always on time. It's become a weekly routine for our family. Very happy!</p>
+        <div class="testi-author">
+          <div class="author-av av3">AM</div>
+          <div>
+            <div class="author-name">Anita Mehta</div>
+            <div class="author-loc">Homemaker, Sector 16B, Greater Noida</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="inner animate">
+    <h2>Book Your Laundry Today</h2>
+    <p>Skip the chore. Let Washbit handle the dirty work. Free pickup from anywhere in Greater Noida — book in under 2 minutes.</p>
+    <div class="cta-btns">
+      <a href="#booking" class="btn-white"><i class="fas fa-calendar-check"></i> Book Pickup Now</a>
+      <a href="https://wa.me/918051468002805146800299" class="btn-wa" target="_blank" style="box-shadow:0 8px 32px rgba(0,0,0,0.25)"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section id="booking">
+  <div class="booking-inner">
+    <div class="booking-info animate">
+      <div class="section-tag"><i class="fas fa-calendar-check"></i> Book Now</div>
+      <h2 class="section-title">Schedule Your Free Pickup</h2>
+      <p>Fill in a quick form and we'll confirm your slot within minutes. Or just drop us a WhatsApp — we respond fast!</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span>+91 80514680029 80514680029 (Replace with your number)</span>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-whatsapp" style="color:#25D366;background:#E0FBF4;"></i>
+          <span>WhatsApp: <a href="https://wa.me/918051468002805146800299" target="_blank" style="color:var(--blue);text-decoration:none;font-weight:600">Chat with us</a></span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-location-dot"></i>
+          <span>Serving all sectors of Greater Noida</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-clock"></i>
+          <span>Open 7 Days • 8 AM – 9 PM</span>
+        </div>
+      </div>
+    </div>
+    <div class="booking-form animate">
+      <h3>Quick Booking Form</h3>
+      <p class="sub">We'll confirm your slot within 30 minutes.</p>
+      <div id="bookingFormWrap">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" id="fname" placeholder="Rahul Sharma" required />
+          </div>
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" id="fphone" placeholder="+91 98765 43210" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Pickup Address *</label>
+          <input type="text" id="faddress" placeholder="Flat no., Sector, Greater Noida" required />
+        </div>
+        <div class="form-group">
+          <label>Service Required *</label>
+          <select id="fservice" required>
+            <option value="" disabled selected>Select a service</option>
+            <option>Ironing Only</option>
+            <option>Wash + Iron Combo</option>
+            <option>Per Kg Laundry</option>
+            <option>Dry Cleaning</option>
+            <option>Multiple Services</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Preferred Pickup Date</label>
+            <input type="date" id="fdate" />
+          </div>
+          <div class="form-group">
+            <label>Preferred Time Slot</label>
+            <select id="ftime">
+              <option value="" disabled selected>Choose slot</option>
+              <option>8 AM – 10 AM</option>
+              <option>10 AM – 12 PM</option>
+              <option>12 PM – 2 PM</option>
+              <option>2 PM – 5 PM</option>
+              <option>5 PM – 8 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Additional Notes (Optional)</label>
+          <textarea id="fnotes" placeholder="Any special instructions, delicate items, or other details..."></textarea>
+        </div>
+        <button class="submit-btn" onclick="submitBooking()">
+          <i class="fas fa-calendar-check"></i> Confirm Booking
+        </button>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <i class="fas fa-circle-check"></i>
+        <h4>Booking Request Sent! 🎉</h4>
+        <p>We've received your request and will confirm your pickup slot within 30 minutes via call or WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <div class="contact-strip-inner">
+    <div class="contact-strip-text">
+      <h4>📍 Serving All of Greater Noida</h4>
+      <p>Alpha 1 &amp; 2 · Beta 1 &amp; 2 · Gamma · Delta · Sector 16B · Knowledge Park · Omega · Pari Chowk &amp; nearby areas</p>
+    </div>
+    <div class="contact-strip-btns">
+      <a href="tel:+918051468002805146800299" class="btn-primary" style="padding:12px 24px;font-size:.88rem"><i class="fas fa-phone"></i> Call Now</a>
+      <a href="https://wa.me/918051468002805146800299" target="_blank" class="btn-wa" style="padding:12px 24px;font-size:.88rem"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="nav-logo" href="#">Wash<span style="color:rgba(255,255,255,0.8)">bit</span><span class="dot">.</span></a>
+      <p>Greater Noida's trusted laundry partner. Professional washing, ironing, and dry cleaning with free pickup and delivery.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Washing</a></li>
+        <li><a href="#services">Ironing</a></li>
+        <li><a href="#services">Dry Cleaning</a></li>
+        <li><a href="#pricing">View Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#booking">Book Pickup</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:+918051468002805146800299">📞 +91 80514680029 80514680029</a></li>
+        <li><a href="https://wa.me/918051468002805146800299">💬 WhatsApp Chat</a></li>
+        <li><a href="mailto:hello@washbit.in">✉️ hello@washbit.in</a></li>
+        <li><a href="#">📍 Greater Noida, UP</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Washbit. All rights reserved.</span>
+    <span class="footer-badge">Made with ❤️ in <span>Greater Noida</span></span>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="floating-wrap">
+  <a href="https://wa.me/918051468002805146800299" class="fab fab-wa" target="_blank" title="WhatsApp Us" style="position:relative">
+    <i class="fab fa-whatsapp"></i>
+    <span class="fab-tooltip">Chat on WhatsApp</span>
+  </a>
+  <a href="#booking" class="fab fab-book"><i class="fas fa-calendar-check"></i> &nbsp;Book Now</a>
+</div>
+
+<script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Mobile menu
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => mob.classList.toggle('open'));
+  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+
+  // Scroll animations
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.animate').forEach(el => obs.observe(el));
+
+  // Form submission
+  function submitBooking() {
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    const addr = document.getElementById('faddress').value.trim();
+    const svc = document.getElementById('fservice').value;
+    if (!name || !phone || !addr || !svc) {
+      alert('Please fill in all required fields (Name, Phone, Address, and Service).');
+      return;
+    }
+    document.getElementById('bookingFormWrap').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    // In production: send data to backend / WhatsApp API / Google Sheets
+  }
+
+  // Set min date on date picker
+  const dateInput = document.getElementById('fdate');
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+  }
+</script>
+</body>
+</html>
+
