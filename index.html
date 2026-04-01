@@ -24,7 +24,7 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body{
+  body {
     font-family: 'DM Sans', sans-serif;
     background: var(--white);
     color: var(--dark);
@@ -90,13 +90,14 @@
   .mobile-book { background: var(--blue); color: white !important; padding: 14px; border-radius: 12px; text-align: center; border: none !important; }
 
   /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #0D1B3E 0%, #1A3A7A 50%, #1A6BFF 100%);
-    display: flex; align-items: center;
-    padding: 100px 5% 60px;
-    position: relative; overflow: hidden;
-  }
+ .hero {
+  background: 
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url('sarah-brown-oa7pqZmmhuA-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+}
+}
   .hero::before {
     content: '';
     position: absolute; inset: 0;
@@ -505,6 +506,10 @@
     .form-row { grid-template-columns: 1fr; }
     .contact-strip-inner { flex-direction: column; align-items: flex-start; }
   }
+  .price-icon i {
+  font-size: 28px;
+  color: var(--blue);
+}
 </style>
 </head>
 <body>
@@ -543,7 +548,7 @@
       <div class="hero-pills">
         <span class="pill"><i class="fas fa-check-circle"></i> Free Pickup</span>
         <span class="pill"><i class="fas fa-check-circle"></i> 24-hr Turnaround</span>
-        <span class="pill"><i class="fas fa-check-circle"></i> Starting ₹15</span>
+        <span class="pill"><i class="fas fa-check-circle"></i> Starting ₹25</span>
         <span class="pill"><i class="fas fa-check-circle"></i> Home Delivery</span>
       </div>
       <div class="hero-btns">
@@ -556,7 +561,7 @@
         <div class="stat-icon blue"><i class="fas fa-shirt"></i></div>
         <div>
           <div class="stat-label">Iron per shirt</div>
-          <div class="stat-val">₹15 only</div>
+          <div class="stat-val">₹25 only</div>
         </div>
       </div>
       <div class="stat-card">
@@ -587,7 +592,9 @@
     </div>
     <div class="services-grid">
       <div class="service-card animate">
-        <div class="service-icon ic-blue"><i class="fas fa-washing-machine"></i></div>
+        <div class="service-icon ic-blue">
+  <i class="fas fa-soap"></i>
+</div>
         <h3>Washing</h3>
         <p>Machine-washed with premium detergents, carefully sorted by fabric type and colour to keep your clothes fresh and lasting longer.</p>
         <div class="service-features">
@@ -797,7 +804,7 @@
     <p>Skip the chore. Let Washbit handle the dirty work. Free pickup from anywhere in Greater Noida — book in under 2 minutes.</p>
     <div class="cta-btns">
       <a href="#booking" class="btn-white"><i class="fas fa-calendar-check"></i> Book Pickup Now</a>
-      <a href="https://wa.me/8051468002" class="btn-wa" target="_blank" style="box-shadow:0 8px 32px rgba(0,0,0,0.25)"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+      <a href="https://wa.me/918051468002" class="btn-wa" target="_blank" style="box-shadow:0 8px 32px rgba(0,0,0,0.25)"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
     </div>
   </div>
 </section>
@@ -812,11 +819,11 @@
       <div class="contact-items">
         <div class="contact-item">
           <i class="fas fa-phone"></i>
-          <span>+91 8051468002(Replace with your number)</span>
+          <span>+91 8051468002 (Replace with your number)</span>
         </div>
         <div class="contact-item">
           <i class="fab fa-whatsapp" style="color:#25D366;background:#E0FBF4;"></i>
-          <span>WhatsApp: <a href="https://wa.me/8051468002" target="_blank" style="color:var(--blue);text-decoration:none;font-weight:600">Chat with us</a></span>
+          <span>WhatsApp: <a href="https://wa.me/918051468002" target="_blank" style="color:var(--blue);text-decoration:none;font-weight:600">Chat with us</a></span>
         </div>
         <div class="contact-item">
           <i class="fas fa-location-dot"></i>
@@ -852,7 +859,6 @@
             <option value="" disabled selected>Select a service</option>
             <option>Ironing Only</option>
             <option>Wash + Iron Combo</option>
-            <option>Per Kg Laundry</option>
             <option>Dry Cleaning</option>
             <option>Multiple Services</option>
           </select>
@@ -899,8 +905,8 @@
       <p>Alpha 1 &amp; 2 · Beta 1 &amp; 2 · Gamma · Delta · Sector 16B · Knowledge Park · Omega · Pari Chowk &amp; nearby areas</p>
     </div>
     <div class="contact-strip-btns">
-      <a href="tel:+8051468002" class="btn-primary" style="padding:12px 24px;font-size:.88rem"><i class="fas fa-phone"></i> Call Now</a>
-      <a href="https://wa.me/8051468002" target="_blank" class="btn-wa" style="padding:12px 24px;font-size:.88rem"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="tel:+918051468002" class="btn-primary" style="padding:12px 24px;font-size:.88rem"><i class="fas fa-phone"></i> Call Now</a>
+      <a href="https://wa.me/918051468002" target="_blank" class="btn-wa" style="padding:12px 24px;font-size:.88rem"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
   </div>
 </div>
@@ -933,9 +939,9 @@
     <div class="footer-col">
       <h5>Contact</h5>
       <ul>
-        <li><a href="tel:+8051468002">📞 +91 8051468002</a></li>
-        <li><a href="https://wa.me/8051468002">💬 WhatsApp Chat</a></li>
-        <li><a href="mailto:kunal445singh@gmail.com">✉️ kunal445singh@gmail.com</a></li>
+        <li><a href="tel:+918051468002">📞 +91 8051468002</a></li>
+        <li><a href="https://wa.me/918051468002">💬 WhatsApp Chat</a></li>
+        <li><a href="mailto:hello@washbit.in">✉️ hello@washbit.in</a></li>
         <li><a href="#">📍 Greater Noida, UP</a></li>
       </ul>
     </div>
@@ -948,7 +954,7 @@
 
 <!-- FLOATING BUTTONS -->
 <div class="floating-wrap">
-  <a href="https://wa.me/p" class="fab fab-wa" target="_blank" title="WhatsApp Us" style="position:relative">
+  <a href="https://wa.me/918051468002" class="fab fab-wa" target="_blank" title="WhatsApp Us" style="position:relative">
     <i class="fab fa-whatsapp"></i>
     <span class="fab-tooltip">Chat on WhatsApp</span>
   </a>
@@ -973,20 +979,7 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.animate').forEach(el => obs.observe(el));
 
-  // Form submission
-  function submitBooking() {
-    const name = document.getElementById('fname').value.trim();
-    const phone = document.getElementById('fphone').value.trim();
-    const addr = document.getElementById('faddress').value.trim();
-    const svc = document.getElementById('fservice').value;
-    if (!name || !phone || !addr || !svc) {
-      alert('Please fill in all required fields (Name, Phone, Address, and Service).');
-      return;
-    }
-    document.getElementById('bookingFormWrap').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
     // In production: send data to backend / WhatsApp API / Google Sheets
-  }
 
   // Set min date on date picker
   const dateInput = document.getElementById('fdate');
@@ -995,5 +988,74 @@
     dateInput.min = today;
   }
 </script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCTRcKdkXqQqOLv2J_eqZzTIIoM1oGoJWs",
+    authDomain: "washbit-ec9a5.firebaseapp.com",
+    projectId: "washbit-ec9a5",
+    storageBucket: "washbit-ec9a5.firebasestorage.app",
+    messagingSenderId: "1037207790971",
+    appId: "1:1037207790971:web:d548ec0543d4f14f64c9de"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+window.submitBooking = async function () {
+  const name = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  const addr = document.getElementById('faddress').value.trim();
+  const svc = document.getElementById('fservice').value;
+  const date = document.getElementById('fdate').value;
+  const time = document.getElementById('ftime').value;
+  const notes = document.getElementById('fnotes').value;
+
+  if (!name || !phone || !addr || !svc) {
+    alert('Please fill all required fields');
+    return;
+  }
+
+  try {
+    // 🔥 Firebase save
+    await addDoc(collection(db, "bookings"), {
+      name,
+      phone,
+      address: addr,
+      service: svc,
+      date,
+      time,
+      notes,
+      createdAt: new Date()
+    });
+
+    // 🔥 WhatsApp message बनाना
+    const message = `Hi, I want to book laundry service
+
+Name: ${name}
+Phone: ${phone}
+Address: ${addr}
+Service: ${svc}
+Date: ${date}
+Time: ${time}
+Notes: ${notes}`;
+
+    const whatsappURL = `https://wa.me/918051468002?text=${encodeURIComponent(message)}`;
+
+    // 🔥 WhatsApp open
+    window.open(whatsappURL, "_blank");
+
+    // UI success
+    document.getElementById('bookingFormWrap').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+
+  } catch (error) {
+    alert("Error: " + error.message);
+  }
+}
+</script>
 </body>
 </html>
+
