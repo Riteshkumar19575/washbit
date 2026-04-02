@@ -134,12 +134,10 @@
     margin-bottom: 20px;
     animation: fadeUp .6s ease .1s both;
   }
-  <h1>
-  Affordable 
-  <span class="highlight">Laundry</span> 
-  <span style="color:white;">Service</span> 
-  in Greater Noida
-</h1>
+  .hero h1 .highlight {
+    background: linear-gradient(90deg, #00C6A2, #1A6BFF);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
   .hero-sub {
     font-size: 1.05rem; color: rgba(255,255,255,0.75);
     margin-bottom: 36px; line-height: 1.7;
@@ -545,7 +543,7 @@
   <div class="hero-inner">
     <div class="hero-text">
       <div class="hero-badge"><i class="fas fa-location-dot"></i> Greater Noida's #1 Laundry Service</div>
-     <h1>Affordable <span class="highlight">Laundry <span style="color:#ffffff;">Service</span></span> in Greater Noida</h1>
+      <h1>Affordable <span class="highlight">Laundry Service</span> in Greater Noida</h1>
       <p class="hero-sub">Free Pickup &amp; Delivery straight to your door. Fast, reliable, and handled with care — so you never worry about laundry again.</p>
       <div class="hero-pills">
         <span class="pill"><i class="fas fa-check-circle"></i> Free Pickup</span>
@@ -991,14 +989,9 @@
   }
 </script>
 <script type="module">
- import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-import { 
-  getFirestore, 
-  collection, 
-  addDoc, 
-  serverTimestamp 
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
   const firebaseConfig = {
     apiKey: "AIzaSyCTRcKdkXqQqOLv2J_eqZzTIIoM1oGoJWs",
     authDomain: "washbit-ec9a5.firebaseapp.com",
@@ -1012,13 +1005,6 @@ import {
   const db = getFirestore(app);
 
 window.submitBooking = async function () {
-  const btn = document.querySelector('.submit-btn');
-
-if (btn) {
-  btn.disabled = true;
-  btn.innerText = "Processing...";
-}
-
   const name = document.getElementById('fname').value.trim();
   const phone = document.getElementById('fphone').value.trim();
   const addr = document.getElementById('faddress').value.trim();
@@ -1027,16 +1013,10 @@ if (btn) {
   const time = document.getElementById('ftime').value;
   const notes = document.getElementById('fnotes').value;
 
- if (!name || !phone || !addr || !svc) {
-  alert('Please fill all required fields');
-
-  if (btn) {
-    btn.disabled = false;
-    btn.innerText = "Confirm Booking";
+  if (!name || !phone || !addr || !svc) {
+    alert('Please fill all required fields');
+    return;
   }
-
-  return;
-}
 
   try {
     // 🔥 Firebase save
@@ -1048,7 +1028,7 @@ if (btn) {
       date,
       time,
       notes,
-      createdAt: serverTimestamp()
+      createdAt: new Date()
     });
 
     // 🔥 WhatsApp message बनाना
@@ -1072,13 +1052,10 @@ Notes: ${notes}`;
     document.getElementById('formSuccess').style.display = 'block';
 
   } catch (error) {
-  alert("Error: " + error.message);
-
-  if (btn) {
-    btn.disabled = false;
-    btn.innerText = "Confirm Booking";
+    alert("Error: " + error.message);
   }
 }
 </script>
 </body>
 </html>
+
