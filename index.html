@@ -982,10 +982,24 @@
 
   // Set min date on date picker
   const dateInput = document.getElementById('fdate');
-  if (dateInput) {
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.min = today;
-  }
+
+if (dateInput) {
+  const today = new Date();
+
+  const localDate = today.getFullYear() + "-" + 
+    String(today.getMonth() + 1).padStart(2, '0') + "-" + 
+    String(today.getDate()).padStart(2, '0');
+
+  dateInput.min = localDate;
+
+  // extra safety
+  dateInput.addEventListener("change", () => {
+    if (dateInput.value < localDate) {
+      alert("Past date allowed nahi hai");
+      dateInput.value = "";
+    }
+  });
+}
 </script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
