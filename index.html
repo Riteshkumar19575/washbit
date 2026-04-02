@@ -97,7 +97,6 @@
   background-size: cover;
   background-position: center;
 }
-}
   .hero::before {
     content: '';
     position: absolute; inset: 0;
@@ -990,7 +989,7 @@
 </script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+ import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyCTRcKdkXqQqOLv2J_eqZzTIIoM1oGoJWs",
@@ -1028,7 +1027,7 @@ window.submitBooking = async function () {
       date,
       time,
       notes,
-      createdAt: new Date()
+      createdAt: serverTimestamp()
     });
 
     // 🔥 WhatsApp message बनाना
