@@ -1029,13 +1029,23 @@ if (dateInput) {
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+  function calculatePrice(clothes) {
+
+  if (clothes == 16) return 349;
+
+  if (clothes <= 7) {
+    return 120 + (clothes - 1) * 10;
+  }
+
+  return clothes * 25;
+}
 
 window.submitBooking = async function () {
   const name = document.getElementById('fname').value.trim();
   const phone = document.getElementById('fphone').value.trim();
   const addr = document.getElementById('faddress').value.trim();
-  const clothes = document.getElementById('clothes').value;
-  const price = calculatePrice(parseInt(clothes));
+const clothes = parseInt(document.getElementById('clothes').value);
+const price = calculatePrice(clothes);
   const svc = document.getElementById('fservice').value;
   const date = document.getElementById('fdate').value;
   const time = document.getElementById('ftime').value;
@@ -1092,17 +1102,6 @@ window.addEventListener("DOMContentLoaded", function () {
   const clothesInput = document.getElementById("clothes");
   const priceDisplay = document.getElementById("priceDisplay");
   const offerHint = document.getElementById("offerHint");
-
-  function calculatePrice(clothes) {
-
-    if (clothes == 16) return 349;
-
-    if (clothes <= 7) {
-      return 120 + (clothes - 1) * 10;
-    }
-
-    return clothes * 25;
-  }
 
   function updatePrice() {
     const clothes = parseInt(clothesInput.value);
