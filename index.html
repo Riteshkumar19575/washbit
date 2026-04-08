@@ -1035,6 +1035,7 @@ window.submitBooking = async function () {
   const phone = document.getElementById('fphone').value.trim();
   const addr = document.getElementById('faddress').value.trim();
   const clothes = document.getElementById('clothes').value;
+  const price = calculatePrice(parseInt(clothes));
   const svc = document.getElementById('fservice').value;
   const date = document.getElementById('fdate').value;
   const time = document.getElementById('ftime').value;
@@ -1047,28 +1048,32 @@ window.submitBooking = async function () {
 
   try {
     // 🔥 Firebase save
-    await addDoc(collection(db, "bookings"), {
-      name,
-      phone,
-      address: addr,
-      service: svc,
-      date,
-      time,
-      notes,
-      createdAt: serverTimestamp()
-    });
-
+  await addDoc(collection(db, "bookings"), {
+  name,
+  phone,
+  address: addr,
+  clothes,
+  price, // 🔥 ये add करो
+  service: svc,
+  date,
+  time,
+  notes,
+  createdAt: serverTimestamp()
+});
     // 🔥 WhatsApp message बनाना
-    const message = `Hi, I want to book laundry service
+   const message = `Hi, I want to book laundry service
 
 Name: ${name}
 Phone: ${phone}
 Address: ${addr}
+Clothes: ${clothes}
+Price: ₹${price}
 Service: ${svc}
 Date: ${date}
 Time: ${time}
-Notes: ${notes}`;
+Notes: ${notes}
 
+${clothes == 16 ? "🔥 Offer Applied: 16 Clothes = ₹349" : ""}`;
     const whatsappURL = `https://wa.me/918051468002?text=${encodeURIComponent(message)}`;
 
     // 🔥 WhatsApp open
